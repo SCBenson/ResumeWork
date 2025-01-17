@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multiline-html-element-content-newline -->
 <!-- eslint-disable vue/html-closing-bracket-spacing -->
 <!-- eslint-disable vue/mustache-interpolation-spacing -->
 <!-- eslint-disable vue/html-closing-bracket-newline -->
@@ -8,153 +9,67 @@
   <Header/>
   <div class="overlay"></div>
   <v-parallax
-    src="https://pixabay.com/get/g907243cf60dbdff91b7bf113c147a8aaeb414f6ff5112d925a01bacdf575fd0298b3ea5da945a18b4183b41843090305fbf96e5d730584983a5bf678c7992029_1280.jpg"
+    src="https://pixabay.com/get/ge24f2c25fdade77ffa156334bd251b5343bc9e7f937084b2def9e45293ec12afcf25d60367f376faf50c5464927357ccdea4fff6a329efc6c3ce52b5c4d33e3f_1920.jpg"
     class="align-center justify-center"
     height="800"
   >
     <div class="text-center hero-content">
       <h1 class="text-h2 font-weight-bold text-blue-lighten-5 mb-4 hero-title">
-        Looking to resume work?
+        Resume Work
       </h1>
       <h2 class="text-h3 text-blue-darken-2">
         Let's get you going
       </h2>
     </div>
   </v-parallax>
-  <v-main 
-    class="d-flex align-center justify-center" 
-    style="min-height: 600px">
-    <v-container v-if="show_contact">
-      <h1>Have a problem? We'll get back to you.</h1>
-      <v-alert
-        v-if="contact_notice != ''"
-        type="warning"
-        variant="tonal"
-        class="mb-4"
+
+  <ContactForm/>
+  <v-container >
+    <v-row>
+      <v-col 
+        v-for="(notes) in notes" 
+        :key="notes.id"
+        cols="12"
+        md="6"
       >
-        There was a problem submitting your message. {{contact_notice}}
-      </v-alert>
-      <v-row>
-        <v-col cols="12">
-          <v-form 
-            v-model="valid"
-            @submit.prevent="sendContactMessage()">
-            <v-row>
-              <v-col 
-                cols="12" 
-                md="4">
-                <v-text-field
-                  v-model="contact_firstName"
-                  class="form-control"
-                  :counter="10"
-                  :rules="nameRules"
-                  label="First name"
-                  required
-                ></v-text-field>
-              </v-col>
+        <v-card>
+          <v-card-text>
+            <h5 class="text-h5">{{ notes.title }}</h5>
+            <p>{{ notes.description }}</p>
+          </v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
 
-              <v-col cols="12" md="4">
-                <v-text-field
-                  v-model="contact_lastName"
-                  class="form-control"
-                  :counter="10"
-                  :rules="nameRules"
-                  label="Last name"
-                  required
-                ></v-text-field>
-              </v-col>
-
-              <v-col cols="12" md="4">
-                <v-text-field
-                  v-model="contact_email"
-                  class="form-control"
-                  :rules="emailRules"
-                  label="E-mail"
-                  required
-                ></v-text-field>
-              </v-col>
-            </v-row>
-            <v-row>
-              <v-col cols="12">
-                <v-textarea 
-                  v-model="contact_message"
-                  class="form-control"
-                  label="Describe your problem here..." 
-                  variant="outlined"
-                ></v-textarea>
-              </v-col>
-            </v-row>
-            <v-row>
-              <v-col>
-                <v-btn 
-                  type="submit"
-                  color="primary"
-                >
-                  Submit
-                </v-btn>
-              </v-col>
-            </v-row>
-          </v-form>
-        </v-col>
-      </v-row>
-    </v-container>
-    <v-container v-else>
-      <h3>Your email has been sent successfully!</h3>
-      <p>Thank you for submitting your message to us!</p>
-    </v-container>
-  </v-main>
 </template>
 
 <script setup>
   import Header from '@/components/header/index.vue'
-</script>
+  import ContactForm from '@/components/contact-form/index.vue'
+  import {DB} from '@/firebase/config'
+  import {collection, getDocs} from 'firebase/firestore'
+  import {ref} from 'vue'
 
-<script>
-export default {
-  data () {
-    return {
-      valid: false,
-      title: 'ResumeWork',
-      show_contact: true,
-      contact_firstName: '',
-      contact_lastName: '',
-      contact_email: '',
-      contact_message: '',
-      contact_notice: '',
-      nameRules: [
-        v => !!v || 'Name is required',
-        v => (v && v.length <= 10) || 'Name must be less than 10 characters.'
-      ],
-      emailRules: [
-        v => !!v || 'Email is required',
-        v => this.validEmail(v) || 'Email must be valid'
-      ],
-    }
-  },
-  methods: {
-    sendContactMessage(){
-      if(!this.validEmail(this.contact_email)){
-        this.contact_notice = 'The email is not properly formatted.'
-      } else if (this.contact_message.length < 10) {
-        this.contact_notice = 'Your message must be longer than 10 characters.'
-      } else {
-        const url = `https://sendemail-yru3w7bgja-uc.a.run.app/sendEmail?email_from=${this.contact_email}&message=${this.contact_message}`
-        const requestOptions = {
-          method: "GET",
-          headers: {"Content-Type" : "application/json"}
-        }
-        fetch(url, requestOptions);
-        this.show_contact = false;
-      }
-    },
-    validEmail(email) {
-      var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-      return re.test(email);
-    }
-  },
-}
+  // eslint-disable-next-line no-unused-vars
+  const notes = ref([]);
+
+  //fetch the notes
+  const notesCollection = collection(DB,'notes');
+
+  getDocs(notesCollection)
+  .then(snapshot=> {
+    let documents = [];
+    snapshot.docs.forEach(doc => {
+      documents.push({...doc.data(),id: doc.id})
+    })
+    notes.value = documents;
+    console.log(documents);
+  });
 
 </script>
+
+
 
 <style scoped>
   .overlay {
