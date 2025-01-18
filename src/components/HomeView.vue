@@ -9,15 +9,15 @@
   <Header/>
   <div class="overlay"></div>
   <v-parallax
-    src="https://pixabay.com/get/ge24f2c25fdade77ffa156334bd251b5343bc9e7f937084b2def9e45293ec12afcf25d60367f376faf50c5464927357ccdea4fff6a329efc6c3ce52b5c4d33e3f_1920.jpg"
-    class="align-center justify-center"
+    src="@/assets/hero-image.jpg"
+    class="align-center justify-center custom-parallax"
     height="800"
   >
     <div class="text-center hero-content">
-      <h1 class="text-h2 font-weight-bold text-blue-lighten-5 mb-4 hero-title">
+      <h1 class="text-h1 font-weight-bold text-blue-lighten-5 mb-4 hero-title">
         Resume Work
       </h1>
-      <h2 class="text-h3 text-blue-darken-2">
+      <h2 class="text-h4 text-blue-darken-4">
         Let's get you going
       </h2>
     </div>
@@ -80,6 +80,10 @@
   bottom: 0;
   background: rgba(0, 0, 0, 0.4); /* Darker overlay */
 
+}
+
+.custom-parallax :deep(.v-img__img) {
+  object-position: center 90% !important;
 }
 
 .hero-content {
