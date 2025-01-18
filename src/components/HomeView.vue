@@ -6,8 +6,8 @@
 <!-- eslint-disable vue/html-self-closing -->
 
 <template>
-  <Header/>
-  <div class="overlay"></div>
+  <Header />
+
   <v-parallax
     src="@/assets/hero-image.jpg"
     class="align-center justify-center custom-parallax"
@@ -17,21 +17,16 @@
       <h1 class="text-h1 font-weight-bold text-blue-lighten-5 mb-4 hero-title">
         Resume Work
       </h1>
-      <h2 class="text-h4 text-blue-darken-4">
-        Let's get you going
+      <h2 class="text-h4 font-weight-bold text-red-darken-1">
+        Your next chapter begins
       </h2>
     </div>
   </v-parallax>
 
-  <ContactForm/>
-  <v-container >
+  <ContactForm />
+  <v-container>
     <v-row>
-      <v-col 
-        v-for="(notes) in notes" 
-        :key="notes.id"
-        cols="12"
-        md="6"
-      >
+      <v-col v-for="notes in notes" :key="notes.id" cols="12" md="6">
         <v-card>
           <v-card-text>
             <h5 class="text-h5">{{ notes.title }}</h5>
@@ -41,45 +36,39 @@
       </v-col>
     </v-row>
   </v-container>
-
 </template>
 
 <script setup>
-  import Header from '@/components/header/index.vue'
-  import ContactForm from '@/components/contact-form/index.vue'
-  import {DB} from '@/firebase/config'
-  import {collection, getDocs} from 'firebase/firestore'
-  import {ref} from 'vue'
+import Header from "@/components/header/index.vue";
+import ContactForm from "@/components/contact-form/index.vue";
+import { DB } from "@/firebase/config";
+import { collection, getDocs } from "firebase/firestore";
+import { ref } from "vue";
 
-  // eslint-disable-next-line no-unused-vars
-  const notes = ref([]);
+// eslint-disable-next-line no-unused-vars
+const notes = ref([]);
 
-  //fetch the notes
-  const notesCollection = collection(DB,'notes');
+//fetch the notes
+const notesCollection = collection(DB, "notes");
 
-  getDocs(notesCollection)
-  .then(snapshot=> {
-    let documents = [];
-    snapshot.docs.forEach(doc => {
-      documents.push({...doc.data(),id: doc.id})
-    })
-    notes.value = documents;
-    console.log(documents);
+getDocs(notesCollection).then((snapshot) => {
+  let documents = [];
+  snapshot.docs.forEach((doc) => {
+    documents.push({ ...doc.data(), id: doc.id });
   });
-
+  notes.value = documents;
+  console.log(documents);
+});
 </script>
 
-
-
 <style scoped>
-  .overlay {
+.overlay {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   background: rgba(0, 0, 0, 0.4); /* Darker overlay */
-
 }
 
 .custom-parallax :deep(.v-img__img) {
@@ -88,7 +77,7 @@
 
 .hero-content {
   position: relative;
-  z-index: 1;/* Place text above overlay */
+  z-index: 1; /* Place text above overlay */
   height: 100%;
 }
 
