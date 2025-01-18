@@ -26,11 +26,13 @@
   <ContactForm />
   <v-container>
     <v-row>
-      <v-col v-for="notes in notes" :key="notes.id" cols="12" md="6">
+      <v-col v-for="note in notes" :key="note.id" cols="12" md="6">
         <v-card>
           <v-card-text>
-            <h5 class="text-h5">{{ notes.title }}</h5>
-            <p>{{ notes.description }}</p>
+            <h5 class="text-h5">
+              {{ note.title }}
+            </h5>
+            <p>{{ note.description }}</p>
           </v-card-text>
         </v-card>
       </v-col>
@@ -45,7 +47,6 @@ import { DB } from "@/firebase/config";
 import { collection, getDocs } from "firebase/firestore";
 import { ref } from "vue";
 
-// eslint-disable-next-line no-unused-vars
 const notes = ref([]);
 
 //fetch the notes
