@@ -9,6 +9,7 @@ import { createRouter, createWebHistory } from "vue-router/auto";
 import Home from "@/components/HomeView.vue";
 import About from "@/components/about/index.vue";
 import SignIn from "@/components/sign-in/index.vue";
+import Articles from "@/components/admin/add_article.vue";
 // import { routes } from 'vue-router/auto-routes'
 
 const router = createRouter({
@@ -17,6 +18,7 @@ const router = createRouter({
     { path: "/", component: Home },
     { path: "/about", component: About },
     { path: "/sign-in", component: SignIn },
+    { path: "/articles", component: Articles },
   ],
 });
 

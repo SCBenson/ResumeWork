@@ -1,9 +1,4 @@
-<!-- eslint-disable vue/multiline-html-element-content-newline -->
-<!-- eslint-disable vue/html-closing-bracket-spacing -->
-<!-- eslint-disable vue/mustache-interpolation-spacing -->
-<!-- eslint-disable vue/html-closing-bracket-newline -->
-<!-- eslint-disable vue/max-attributes-per-line -->
-<!-- eslint-disable vue/html-self-closing -->
+<!--eslint-disable--> 
 <template>
     <v-main 
     class="d-flex align-center justify-center" 

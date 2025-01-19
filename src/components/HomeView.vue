@@ -1,9 +1,4 @@
-<!-- eslint-disable vue/multiline-html-element-content-newline -->
-<!-- eslint-disable vue/html-closing-bracket-spacing -->
-<!-- eslint-disable vue/mustache-interpolation-spacing -->
-<!-- eslint-disable vue/html-closing-bracket-newline -->
-<!-- eslint-disable vue/max-attributes-per-line -->
-<!-- eslint-disable vue/html-self-closing -->
+<!--eslint-disable--> 
 
 <template>
   <Header />
@@ -47,7 +42,11 @@ import { DB } from "@/firebase/config";
 import { collection, getDocs } from "firebase/firestore";
 import { ref } from "vue";
 
+<<<<<<< Updated upstream
 const notes = ref([]);
+=======
+  const notes = ref([]);
+>>>>>>> Stashed changes
 
 //fetch the notes
 const notesCollection = collection(DB, "notes");
