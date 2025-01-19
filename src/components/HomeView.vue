@@ -42,11 +42,7 @@ import { DB } from "@/firebase/config";
 import { collection, getDocs } from "firebase/firestore";
 import { ref } from "vue";
 
-<<<<<<< Updated upstream
-const notes = ref([]);
-=======
   const notes = ref([]);
->>>>>>> Stashed changes
 
 //fetch the notes
 const notesCollection = collection(DB, "notes");
