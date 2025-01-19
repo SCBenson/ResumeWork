@@ -7,12 +7,10 @@ import App from "./App.vue";
 // Composables
 import { createApp } from "vue";
 
-import router from "./router";
-
 // const mongoConnect = require("./util/database.js");
 
 const app = createApp(App);
-app.use(router);
+// app.use(router);
 registerPlugins(app);
 
 app.mount("#app");
