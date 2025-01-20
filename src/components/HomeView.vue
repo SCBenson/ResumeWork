@@ -31,7 +31,7 @@
             <p>{{ notes.description }}</p>
           </v-card-text>
           <v-card-actions>
-            <router-link :to="'/admin/update_article/' + notes.id" class="text-decoration-none font-weight-bold text-red mx-2">
+            <router-link :to="'/admin/update_article/' + notes.id" class="text-decoration-none font-weight-bold text-blue mx-2">
             Update Article
             </router-link>
           </v-card-actions>
