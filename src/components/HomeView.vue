@@ -20,15 +20,21 @@
 
   <ContactForm />
   <v-container>
+    <h1 class="text-red pb-3">Firestore Database Collection</h1>
     <v-row>
-      <v-col v-for="note in notes" :key="note.id" cols="12" md="6">
+      <v-col v-for="(notes) in notes" :key="notes.id" cols="12" md="6">
         <v-card>
           <v-card-text>
-            <h5 class="text-h5">
-              {{ note.title }}
+            <h5 class="text-h5 font-weight-bold">
+              {{ notes.title }}
             </h5>
-            <p>{{ note.description }}</p>
+            <p>{{ notes.description }}</p>
           </v-card-text>
+          <v-card-actions>
+            <router-link :to="'/admin/update_article/' + notes.id" class="text-decoration-none font-weight-bold text-red mx-2">
+            Update Article
+            </router-link>
+          </v-card-actions>
         </v-card>
       </v-col>
     </v-row>
@@ -53,7 +59,7 @@ getDocs(notesCollection).then((snapshot) => {
     documents.push({ ...doc.data(), id: doc.id });
   });
   notes.value = documents;
-  console.log(documents);
+  // console.log(documents);
 });
 </script>
 
