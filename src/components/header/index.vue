@@ -14,10 +14,12 @@ import logoUrl from "@/assets/resumework-logo.svg";
         About
       </router-link>
 
-      <router-link to="/articles" class="text-decoration-none text-black mx-2">
-        Articles
+      <router-link to="/admin/add_article" class="text-decoration-none text-black mx-2">
+        Add Article
       </router-link>
-
+      <router-link to="/users/register" class="text-decoration-none text-black mx-2">
+        Register
+      </router-link>
       <router-link to="/sign-in" class="text-decoration-none text-black mx-2">
         Sign In
       </router-link>
