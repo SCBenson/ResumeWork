@@ -8,7 +8,6 @@
 import { createRouter, createWebHistory } from "vue-router/auto";
 import Home from "@/components/HomeView.vue";
 import About from "@/components/about/index.vue";
-import SignIn from "@/components/sign-in/index.vue";
 import AddArticle from "@/components/admin/add_article.vue";
 import UpdateArticle from "@/components/admin/update_article.vue";
 import RegisterUser from "@/components/users/register.vue";
@@ -18,7 +17,6 @@ const router = createRouter({
   routes: [
     { path: "/", component: Home },
     { path: "/about", component: About },
-    { path: "/sign-in", component: SignIn },
     { path: "/admin/add_article", component: AddArticle },
     { path: "/admin/update_article/:id", component: UpdateArticle },
     { path: "/users/register", component: RegisterUser },

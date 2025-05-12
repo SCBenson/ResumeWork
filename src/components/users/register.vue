@@ -5,11 +5,9 @@
     <v-container>
         
         <v-form @submit.prevent="submitForm">
-            
             <v-row justify="center">
-                
                 <v-col cols="12" md="3">
-                    <h1 class="mb-6">Register an account</h1>
+                    <h1 class="mb-6">{{ register ? 'Create an account' : 'Sign in to your account' }}</h1>
                     <v-row>
                         <v-text-field label="Email" v-model="formData.email"></v-text-field>
                     </v-row>
@@ -17,7 +15,10 @@
                         <v-text-field label="Password" v-model="formData.password"></v-text-field>
                     </v-row>
                     <v-row>
-                        <v-btn type="submit">Register</v-btn>
+                        <v-btn type="submit">Submit</v-btn>
+                    </v-row>
+                    <v-row class="pt-3">
+                        <v-btn class="pl-0 pr-0" color="red" variant="text" type="submit">{{ register ? 'Sign in here' : 'Register here' }}</v-btn>
                     </v-row>
                 </v-col>
             </v-row>
